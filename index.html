@@ -38,6 +38,7 @@ img{
   max-width:90%;
   border-radius:20px;
   margin:20px auto;
+  height:auto;
 }
 
 /* Floating hearts */
@@ -62,7 +63,9 @@ img{
   to{transform:scale(2.5);opacity:0;}
 }
 
-/* Easter egg heart */
+/* ======================
+   EASTER EGG HEART FIX
+   ====================== */
 #eggHeart{
   width:220px;
   height:220px;
@@ -71,6 +74,7 @@ img{
   transform:rotate(-45deg);
   animation:pulse 1.2s infinite;
 }
+
 @keyframes pulse{
   50%{transform:rotate(-45deg) scale(1.1);}
 }
@@ -84,8 +88,9 @@ img{
   border-radius:50%;
   position:absolute;
 }
-#eggHeart::before{top:-110px;left:0;}
-#eggHeart::after{left:110px;top:0;}
+
+#eggHeart::before{ top:-110px; left:0; }
+#eggHeart::after{ left:110px; top:0; }
 
 #eggText{
   position:absolute;
@@ -100,6 +105,7 @@ img{
   font-weight:700;
   text-align:center;
   padding:20px;
+  text-shadow:0 2px 8px rgba(0,0,0,0.35);
 }
 </style>
 </head>
@@ -118,15 +124,12 @@ img{
 <!-- ROSE -->
 <section id="rose">
 <h1>🌹 Happy Rose Day Pavithra 🌹</h1>
-<p>
-This picture is us only 😂<br>
-Adjust for now… one day surely we will recreate it 👩‍❤️‍👨
-</p>
+<p>This picture is us only 😂<br>One day surely we will recreate it 👩‍❤️‍👨</p>
 <img src="rose.jpg">
 <button onclick="show('proposeDay')">Next 💖</button>
 </section>
 
-<!-- PROPOSE DAY -->
+<!-- PROPOSE -->
 <section id="proposeDay" onclick="tapEgg()">
 <h1>💍 Happy Propose Day Pavithra 💍</h1>
 <img src="propose.jpg">
@@ -135,7 +138,41 @@ Adjust for now… one day surely we will recreate it 👩‍❤️‍👨
 but since today exists, I’m not missing the chance 😌💍❤️”
 </p>
 <small>(tap 3 times anywhere 👀)</small><br>
-<button onclick="show('photos')">Next 💘</button>
+<button onclick="show('chocolate')">Next 🍫</button>
+</section>
+
+<!-- CHOCOLATE -->
+<section id="chocolate">
+<h1>🍫 Happy Chocolate Day Pavithra 🍫</h1>
+<p style="font-size:20px;">
+Just like chocolate, our relationship is sweet,<br>
+sometimes messy… but always irresistible 😌🍫❤️
+</p>
+<img src="chocolate.jpg">
+<button onclick="show('teddy')">Next 🧸</button>
+</section>
+
+<!-- TEDDY -->
+<section id="teddy">
+<h1>🧸 Happy Teddy Day Pavithra 🧸</h1>
+<p style="font-size:20px;">
+This teddy can’t hug you like I want to…<br>
+So consider it a temporary replacement 😌❤️
+</p>
+<img src="teddy.jpg">
+<button onclick="show('promise')">Next 🤝</button>
+</section>
+
+<!-- PROMISE -->
+<section id="promise">
+<h1>🤝 Happy Promise Day Pavithra 🤝</h1>
+<p style="font-size:20px;">
+I promise to annoy you forever,<br>
+love you endlessly,<br>
+and always choose us 😌💖
+</p>
+<img src="promise.jpg">
+<button onclick="show('photos')">Next 💞</button>
 </section>
 
 <!-- PHOTOS -->
@@ -145,10 +182,22 @@ but since today exists, I’m not missing the chance 😌💍❤️”
 <img src="photo2.jpg">
 <img src="photo3.jpg">
 <img src="photo4.jpg">
-<button onclick="show('proposal')">Next 💘</button>
+<button onclick="show('kiss')">Next 💋</button>
 </section>
 
-<!-- PROPOSAL -->
+<!-- KISS DAY -->
+<section id="kiss">
+<h1>💋 Happy Kiss Day Pavithra 💋</h1>
+<p style="font-size:20px;">
+A kiss is not just lips meeting…<br>
+it’s all the unsaid love finding its way 😌❤️<br><br>
+<b>so inkepudu kiss 😘 chesthunapudu apaku 😝</b>
+</p>
+<img src="kiss.jpg">
+<button onclick="show('proposal')">Next 💖</button>
+</section>
+
+<!-- VALENTINE -->
 <section id="proposal">
 <h1>Will you be my Valentine, Pavithra? 💖</h1>
 <button onclick="yes()">YES 😍</button>
@@ -166,36 +215,44 @@ z-index:999;
 align-items:center;
 justify-content:center;
 flex-direction:column;
+text-align:center;
+padding:20px;
 ">
-<h1>❤️ PAVITHRA ❤️</h1>
-<p style="font-size:22px;">LOVE YOU MY TESTER 😌❤️</p>
-<p><small>(tap anywhere)</small></p>
+  <h1>❤️ PAVITHRA ❤️ KRISHNA ❤️</h1>
+  <p style="font-size:22px;">LOVE YOU MY TESTER 😌❤️</p>
+  <p><small>(tap anywhere)</small></p>
+
+  <img src="final.jpg" style="
+    width:80%;
+    max-width:320px;
+    border-radius:25px;
+    margin-top:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.35);
+  ">
 </div>
 
 <!-- EASTER EGG -->
-<div id="egg" style="
+<div id="egg" onclick="closeEgg()" style="
 display:none;
 position:fixed;
 inset:0;
 background:radial-gradient(circle,#ff5f9e,#1a001a);
 z-index:1000;
 align-items:center;
-justify-content:center;"
-onclick="closeEgg()">
-
+justify-content:center;
+">
   <div id="eggHeart">
     <div id="eggText">Love you MADAM 😍</div>
   </div>
-
 </div>
 
-<!-- MUSIC -->
+<!-- AUDIO -->
 <audio id="bg" src="song1.mp3" loop></audio>
 <audio id="yesMusic" src="song2.mp3" loop></audio>
 <audio id="boomSound" src="cracker.mp3"></audio>
 
 <script>
-let taps = 0;
+let taps=0;
 
 function show(id){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
@@ -205,9 +262,11 @@ function show(id){
 function unlock(){
   let v=document.getElementById("pass").value.toLowerCase();
   if(v.includes("love you") && v.includes("krishna")){
-    document.getElementById("bg").play();
+    document.getElementById("bg").play().catch(()=>{});
+    let b=document.getElementById("boomSound");
+    b.play().then(()=>{ b.pause(); b.currentTime=0; });
     show("rose");
-  }else alert("Still waiting 😄❤️");
+  } else alert("Still waiting 😄❤️");
 }
 
 function moveNo(b){
@@ -223,7 +282,8 @@ function yes(){
 }
 
 function finalBoom(e){
-  document.getElementById("boomSound").play();
+  let s=document.getElementById("boomSound");
+  s.currentTime=0; s.play();
   for(let i=0;i<25;i++){
     let c=document.createElement("div");
     c.className="cracker";
@@ -240,17 +300,6 @@ function tapEgg(){
   if(taps===3){
     document.getElementById("egg").style.display="flex";
     taps=0;
-
-    // crazy effect
-    for(let i=0;i<30;i++){
-      let c=document.createElement("div");
-      c.className="cracker";
-      c.innerHTML=["💗","🎆","✨","😍"][Math.floor(Math.random()*4)];
-      c.style.left=Math.random()*100+"%";
-      c.style.top=Math.random()*100+"%";
-      document.body.appendChild(c);
-      setTimeout(()=>c.remove(),1500);
-    }
   }
 }
 
@@ -258,7 +307,6 @@ function closeEgg(){
   document.getElementById("egg").style.display="none";
 }
 
-/* Floating hearts always */
 setInterval(()=>{
   let h=document.createElement("div");
   h.className="heart";
