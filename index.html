@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Pavithra ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  font-family:'Playfair Display',serif;
+  background:#fff0f5;
+  text-align:center;
+  overflow-x:hidden;
+}
+
+section{
+  display:none;
+  padding:30px;
+  min-height:100vh;
+}
+.active{display:block;}
+
+button{
+  padding:14px 26px;
+  font-size:18px;
+  border:none;
+  border-radius:25px;
+  margin:10px;
+  background:#ff4d6d;
+  color:white;
+  cursor:pointer;
+}
+
+img{
+  max-width:90%;
+  border-radius:20px;
+  margin:20px auto;
+}
+
+/* Floating hearts */
+.heart{
+  position:fixed;
+  font-size:22px;
+  animation:float 6s linear infinite;
+}
+@keyframes float{
+  from{transform:translateY(100vh);opacity:1;}
+  to{transform:translateY(-10vh);opacity:0;}
+}
+
+/* Crackers */
+.cracker{
+  position:fixed;
+  font-size:30px;
+  animation:boom 1.4s ease-out forwards;
+}
+@keyframes boom{
+  from{transform:scale(0);opacity:1;}
+  to{transform:scale(2.5);opacity:0;}
+}
+
+/* Easter egg heart */
+#eggHeart{
+  width:220px;
+  height:220px;
+  background:#ff1e56;
+  position:relative;
+  transform:rotate(-45deg);
+  animation:pulse 1.2s infinite;
+}
+@keyframes pulse{
+  50%{transform:rotate(-45deg) scale(1.1);}
+}
+
+#eggHeart::before,
+#eggHeart::after{
+  content:"";
+  width:220px;
+  height:220px;
+  background:#ff1e56;
+  border-radius:50%;
+  position:absolute;
+}
+#eggHeart::before{top:-110px;left:0;}
+#eggHeart::after{left:110px;top:0;}
+
+#eggText{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transform:rotate(45deg);
+  z-index:5;
+  color:white;
+  font-size:22px;
+  font-weight:700;
+  text-align:center;
+  padding:20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOCK -->
+<section id="lock" class="active">
+<h1>🔐 Security Question</h1>
+<p>What words Krishna is always waiting to hear? 😅❤️</p>
+<input id="pass" placeholder="Type honestly 😄">
+<br><br>
+<button onclick="unlock()">Unlock 💖</button>
+</section>
+
+<!-- ROSE -->
+<section id="rose">
+<h1>🌹 Happy Rose Day Pavithra 🌹</h1>
+<p>
+This picture is us only 😂<br>
+Adjust for now… one day surely we will recreate it 👩‍❤️‍👨
+</p>
+<img src="rose.jpg">
+<button onclick="show('proposeDay')">Next 💖</button>
+</section>
+
+<!-- PROPOSE DAY -->
+<section id="proposeDay" onclick="tapEgg()">
+<h1>💍 Happy Propose Day Pavithra 💍</h1>
+<img src="propose.jpg">
+<p style="font-size:20px;">
+“I don’t need a special day to propose…<br>
+but since today exists, I’m not missing the chance 😌💍❤️”
+</p>
+<small>(tap 3 times anywhere 👀)</small><br>
+<button onclick="show('photos')">Next 💘</button>
+</section>
+
+<!-- PHOTOS -->
+<section id="photos">
+<h1>📸 Our Memories ❤️</h1>
+<img src="photo1.jpg">
+<img src="photo2.jpg">
+<img src="photo3.jpg">
+<img src="photo4.jpg">
+<button onclick="show('proposal')">Next 💘</button>
+</section>
+
+<!-- PROPOSAL -->
+<section id="proposal">
+<h1>Will you be my Valentine, Pavithra? 💖</h1>
+<button onclick="yes()">YES 😍</button>
+<button onclick="moveNo(this)">NO 🙈</button>
+</section>
+
+<!-- FINAL -->
+<div id="final" onclick="finalBoom(event)" style="
+display:none;
+position:fixed;
+inset:0;
+background:linear-gradient(135deg,#ff1e56,#ffac41);
+color:white;
+z-index:999;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+">
+<h1>❤️ PAVITHRA ❤️</h1>
+<p style="font-size:22px;">LOVE YOU MY TESTER 😌❤️</p>
+<p><small>(tap anywhere)</small></p>
+</div>
+
+<!-- EASTER EGG -->
+<div id="egg" style="
+display:none;
+position:fixed;
+inset:0;
+background:radial-gradient(circle,#ff5f9e,#1a001a);
+z-index:1000;
+align-items:center;
+justify-content:center;"
+onclick="closeEgg()">
+
+  <div id="eggHeart">
+    <div id="eggText">Love you MADAM 😍</div>
+  </div>
+
+</div>
+
+<!-- MUSIC -->
+<audio id="bg" src="song1.mp3" loop></audio>
+<audio id="yesMusic" src="song2.mp3" loop></audio>
+<audio id="boomSound" src="cracker.mp3"></audio>
+
+<script>
+let taps = 0;
+
+function show(id){
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+function unlock(){
+  let v=document.getElementById("pass").value.toLowerCase();
+  if(v.includes("love you") && v.includes("krishna")){
+    document.getElementById("bg").play();
+    show("rose");
+  }else alert("Still waiting 😄❤️");
+}
+
+function moveNo(b){
+  b.style.position="absolute";
+  b.style.left=Math.random()*80+"%";
+  b.style.top=Math.random()*80+"%";
+}
+
+function yes(){
+  document.getElementById("bg").pause();
+  document.getElementById("yesMusic").play();
+  document.getElementById("final").style.display="flex";
+}
+
+function finalBoom(e){
+  document.getElementById("boomSound").play();
+  for(let i=0;i<25;i++){
+    let c=document.createElement("div");
+    c.className="cracker";
+    c.innerHTML=["🎆","💗","✨","💥"][Math.floor(Math.random()*4)];
+    c.style.left=e.clientX+"px";
+    c.style.top=e.clientY+"px";
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),1400);
+  }
+}
+
+function tapEgg(){
+  taps++;
+  if(taps===3){
+    document.getElementById("egg").style.display="flex";
+    taps=0;
+
+    // crazy effect
+    for(let i=0;i<30;i++){
+      let c=document.createElement("div");
+      c.className="cracker";
+      c.innerHTML=["💗","🎆","✨","😍"][Math.floor(Math.random()*4)];
+      c.style.left=Math.random()*100+"%";
+      c.style.top=Math.random()*100+"%";
+      document.body.appendChild(c);
+      setTimeout(()=>c.remove(),1500);
+    }
+  }
+}
+
+function closeEgg(){
+  document.getElementById("egg").style.display="none";
+}
+
+/* Floating hearts always */
+setInterval(()=>{
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="💗";
+  h.style.left=Math.random()*100+"%";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+},500);
+</script>
+
+</body>
+</html>
